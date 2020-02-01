@@ -1,0 +1,29 @@
+body {
+    margin: 20px;
+}
+
+body div {
+    border: 2px solid black;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.caption {
+    color: #4c4022;
+    background-color: #a09044;
+    width: 155px;
+}
+
+.handler-name {
+    color: #1b3537;
+    background-color: #5c9ea0;
+    width: 100px;
+}
+
+.template-name {
+    color: #542144;
+    background-color: #cd2786;
+    width: 75px;
+}

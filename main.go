@@ -7,6 +7,7 @@ import (
 
 	"github.com/petrokulybaba/go-basic-framework/configs"
 	"github.com/petrokulybaba/go-basic-framework/src/handlers"
+	"github.com/petrokulybaba/go-basic-framework/src/middlewares"
 )
 
 func main() {
@@ -14,7 +15,9 @@ func main() {
 	http.Handle(configs.Routes["assets"]["path"], http.StripPrefix(configs.Routes["assets"]["path"], http.FileServer(http.Dir(configs.ASSETS_DIR))))
 
 	// Handlers
-	http.HandleFunc(configs.Routes["index"]["path"], handlers.IndexHandler)
+	// All handlers must be wrapped in MakeHandler
+	// This gives additional benefits such as checks if a route exist and printing a log
+	http.HandleFunc(configs.Routes["index"]["path"], middlewares.MakeHandler(handlers.IndexHandler))
 
 	fmt.Println("Visit: http://localhost" + configs.PORT)
 

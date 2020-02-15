@@ -2,6 +2,7 @@ package services
 
 import (
 	"html/template"
+	"log"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -19,7 +20,7 @@ var templates = func() *template.Template {
 		return err
 	})
 	if err != nil {
-		panic(err.Error())
+		log.Fatal(err)
 	}
 	return templates
 }()

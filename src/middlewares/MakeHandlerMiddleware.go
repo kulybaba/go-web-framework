@@ -21,10 +21,10 @@ func CheckRoute(w http.ResponseWriter, r *http.Request, fn func(http.ResponseWri
 	for _, v := range configs.Routes {
 		if v["path"] == path {
 			fn(w, r)
-			services.PrintLogOK(http.StatusOK, path)
+			services.PrintLogOK(path)
 			return
 		}
 	}
 	http.NotFound(w, r)
-	services.PrintLogNotFound(http.StatusNotFound, path)
+	services.PrintLogNotFound(path)
 }

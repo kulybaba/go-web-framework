@@ -2,26 +2,34 @@ package configs
 
 import (
 	"database/sql"
-	"fmt"
 	"log"
+	"os"
 
 	_ "github.com/go-sql-driver/mysql"
 	_ "github.com/lib/pq"
+	"github.com/joho/godotenv"
 )
 
-const (
-	DB_DRIVER   string = "mysql" // "mysql" or "postgres"
-	DB_USER     string = "username"
-	DB_PASSWORD string = "password"
-	DB_HOST     string = "localhost"
-	DB_PORT     string = "3306"
-	DB_NAME     string = "db_name"
-)
+var DB = func() (db *sql.DB) {
+	LoadEnv()
 
-var DB = func() *sql.DB {
-	db, err := sql.Open(DB_DRIVER, fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME))
+	db, err := sql.Open(GetEnv("DATABASE"), GetEnv("DATABASE_URL"))
 	if err != nil {
 		log.Fatal(err)
 	}
-	return db
+	return
 }()
+
+func LoadEnv() {
+	if err := godotenv.Load(); err != nil {
+		log.Fatal(err)
+	}
+}
+
+func GetEnv(name string) (env string) {
+	env, ok := os.LookupEnv(name)
+	if !ok {
+		log.Fatalf("Not set variable %s in .env", name)
+	}
+	return
+}

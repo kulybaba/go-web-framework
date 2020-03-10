@@ -2,7 +2,7 @@ body {
     margin: 20px;
 }
 
-body div {
+.caption, .handler-name, .template-name {
     border: 2px solid black;
     font-weight: bold;
     border-radius: 5px;

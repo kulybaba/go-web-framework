@@ -1,0 +1,11 @@
+{{define "errors"}}
+    {{if index .Vars "errors"}}
+        <div>
+            <ul>
+                {{range index .Vars "errors"}}
+                    <li>{{.}}</li>
+                {{end}}
+            </ul>
+        </div>
+    {{end}}
+{{end}}

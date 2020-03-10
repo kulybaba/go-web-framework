@@ -2,6 +2,6 @@
 
 {{define "content"}}
     <div class="caption">GO Basic Framework</div>
-    <div class="handler-name">{{index . 0}}</div>
-    <div class="template-name">{{index . 1}}</div>
+    <div class="handler-name">{{index .Vars "handler"}}</div>
+    <div class="template-name">{{index .Vars "template"}}</div>
 {{end}}

@@ -11,6 +11,10 @@ import (
 	"github.com/petrokulybaba/go-basic-framework/configs"
 )
 
+type Template struct {
+	Vars map[string]interface{}
+}
+
 var templates = func() *template.Template {
 	templates := template.New("")
 	err := filepath.Walk(configs.TEMPLATES_DIR, func(path string, file os.FileInfo, err error) error {
@@ -25,8 +29,8 @@ var templates = func() *template.Template {
 	return templates
 }()
 
-func RenderTemplate(w http.ResponseWriter, name string, data ...interface{}) {
-	err := templates.ExecuteTemplate(w, name+configs.TEMPLATES_EXTENSION, data)
+func RenderTemplate(w http.ResponseWriter, name string, vars map[string]interface{}) {
+	err := templates.ExecuteTemplate(w, name+configs.TEMPLATES_EXTENSION, Template{vars})
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

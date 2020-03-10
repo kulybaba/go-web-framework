@@ -5,10 +5,10 @@ import (
 	"net/http"
 )
 
-func PrintLogOK(path string) {
-	log.Printf("%d (OK): %s", http.StatusOK, path)
+func PrintLogOK(method string, path string) {
+	log.Printf("%d %s (OK): %s", http.StatusOK, method, path)
 }
 
-func PrintLogNotFound(path string) {
-	log.Printf("%d (Page not found): %s", http.StatusNotFound, path)
+func PrintLogNotFound(method string, path string) {
+	log.Printf("%d %s (Page not found): %s", http.StatusNotFound, method, path)
 }

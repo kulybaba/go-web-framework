@@ -8,5 +8,8 @@ import (
 )
 
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
-	services.RenderTemplate(w, configs.Routes["index"]["name"], "IndexHandler", "index.html")
+	services.RenderTemplate(w, configs.Routes["index"]["name"], map[string]interface{}{
+		"handler":  "IndexHandler",
+		"template": "index.html",
+	})
 }

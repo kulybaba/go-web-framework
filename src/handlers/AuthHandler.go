@@ -27,3 +27,26 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 }
+
+func RegistrationHandler(w http.ResponseWriter, r *http.Request) {
+	switch r.Method {
+	case "GET":
+		services.RenderTemplate(w, configs.Routes["registration"]["name"], nil)
+	case "POST":
+		login := forms.Registration{
+			r.FormValue("firstName"),
+			r.FormValue("lastName"),
+			r.FormValue("email"),
+			r.FormValue("password"),
+			r.FormValue("repeatPassword"),
+		}
+
+		if errors := login.Validate(); errors != nil {
+			services.RenderTemplate(w, configs.Routes["registration"]["name"], map[string]interface{}{
+				"errors": errors,
+			})
+		} else {
+			http.Redirect(w, r, configs.Routes["index"]["path"], http.StatusFound)
+		}
+	}
+}

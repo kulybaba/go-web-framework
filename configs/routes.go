@@ -16,4 +16,8 @@ var Routes = map[string]map[string]string{
 		"name": "login",
 		"path": "/login",
 	},
+	"registration": {
+		"name": "registration",
+		"path": "/registration",
+	},
 }

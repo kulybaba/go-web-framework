@@ -1,4 +1,4 @@
-{{define "base"}}
+{{define "header"}}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +11,9 @@
     {{end}}
 </head>
 <body>
-    {{block "content" .}}{{end}}
+{{end}}
+
+{{define "footer"}}
     {{block "js" .}}
         <script src="./../assets/js/main.js"></script>
     {{end}}

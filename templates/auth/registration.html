@@ -1,15 +1,15 @@
-{{template "base" .}}
+{{template "header" .}}
 
-{{define "content"}}
-    <h3>Registration</h3>
-    {{block "errors" .}}{{end}}
+<h3>Registration</h3>
+{{block "errors" .}}{{end}}
 
-    <form method="POST" action="">
-        <input type="text" name="firstName" placeholder="First name"><br>
-        <input type="text" name="lastName" placeholder="Last name"><br>
-        <input type="text" name="email" placeholder="Email"><br>
-        <input type="password" name="password" placeholder="Password"><br>
-        <input type="password" name="repeatPassword" placeholder="Repeat password"><br>
-        <button type="submit">Registration</button>
-    </form>
-{{end}}
+<form method="POST" action="">
+    <input type="text" name="firstName" placeholder="First name"><br>
+    <input type="text" name="lastName" placeholder="Last name"><br>
+    <input type="text" name="email" placeholder="Email"><br>
+    <input type="password" name="password" placeholder="Password"><br>
+    <input type="password" name="repeatPassword" placeholder="Repeat password"><br>
+    <button type="submit">Registration</button>
+</form>
+
+{{template "footer" .}}

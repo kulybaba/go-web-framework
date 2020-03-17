@@ -1,7 +1,7 @@
-{{template "base" .}}
+{{template "header" .}}
 
-{{define "content"}}
-    <div class="caption">GO Basic Framework</div>
-    <div class="handler-name">{{index .Vars "handler"}}</div>
-    <div class="template-name">{{index .Vars "template"}}</div>
-{{end}}
+<div class="caption">GO Basic Framework</div>
+<div class="handler-name">{{index .Vars "handler"}}</div>
+<div class="template-name">{{index .Vars "template"}}</div>
+
+{{template "footer" .}}

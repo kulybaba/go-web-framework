@@ -1,19 +1,19 @@
 package configs
 
 import (
-	"database/sql"
 	"log"
 	"os"
 
-	_ "github.com/go-sql-driver/mysql"
-	_ "github.com/lib/pq"
 	"github.com/joho/godotenv"
+	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/mysql"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
 
-var DB = func() (db *sql.DB) {
+var DB = func() (db *gorm.DB) {
 	LoadEnv()
 
-	db, err := sql.Open(GetEnv("DATABASE"), GetEnv("DATABASE_URL"))
+	db, err := gorm.Open(GetEnv("DATABASE"), GetEnv("DATABASE_URL"))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -21,8 +21,10 @@ var DB = func() (db *sql.DB) {
 }()
 
 func LoadEnv() {
-	if err := godotenv.Load(); err != nil {
-		log.Fatal(err)
+	if err := godotenv.Load(".env.local"); err != nil {
+		if err := godotenv.Load(".env"); err != nil {
+			log.Fatal(err)
+		}
 	}
 }
 

@@ -15,7 +15,7 @@ func main() {
 	http.Handle(configs.Routes["assets"]["path"], http.StripPrefix(configs.Routes["assets"]["path"], http.FileServer(http.Dir(configs.ASSETS_DIR))))
 
 	// Handlers
-	// All handlers must be wrapped in MakeHandler
+	// All handlers must be wrapped in MakeHandler middleware
 	// This gives additional benefits such as checks if a route exist and printing a log
 	http.HandleFunc(configs.Routes["index"]["path"], middlewares.MakeHandler(handlers.IndexHandler))
 	http.HandleFunc(configs.Routes["login"]["path"], middlewares.MakeHandler(handlers.LoginHandler))

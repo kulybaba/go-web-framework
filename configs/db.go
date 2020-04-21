@@ -4,10 +4,10 @@ import (
 	"log"
 	"os"
 
-	"github.com/joho/godotenv"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
+	"github.com/joho/godotenv"
 )
 
 var DB = func() (db *gorm.DB) {
@@ -17,6 +17,13 @@ var DB = func() (db *gorm.DB) {
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	if err := db.DB().Ping(); err != nil {
+		log.Fatal(err)
+	}
+
+	db.SingularTable(true)
+
 	return
 }()
 

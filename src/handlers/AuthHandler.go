@@ -13,18 +13,7 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 	case "GET":
 		services.RenderTemplate(w, configs.Routes["login"]["name"], nil)
 	case "POST":
-		login := forms.Login{
-			r.FormValue("email"),
-			r.FormValue("password"),
-		}
-
-		if errors := login.Validate(); errors != nil {
-			services.RenderTemplate(w, configs.Routes["login"]["name"], map[string]interface{}{
-				"errors": errors,
-			})
-		} else {
-			http.Redirect(w, r, configs.Routes["index"]["path"], http.StatusFound)
-		}
+		services.Login(w, r, forms.Login{r.FormValue("email"), r.FormValue("password")})
 	}
 }
 
@@ -33,7 +22,7 @@ func RegistrationHandler(w http.ResponseWriter, r *http.Request) {
 	case "GET":
 		services.RenderTemplate(w, configs.Routes["registration"]["name"], nil)
 	case "POST":
-		login := forms.Registration{
+		registration := forms.Registration{
 			r.FormValue("firstName"),
 			r.FormValue("lastName"),
 			r.FormValue("email"),
@@ -41,9 +30,9 @@ func RegistrationHandler(w http.ResponseWriter, r *http.Request) {
 			r.FormValue("repeatPassword"),
 		}
 
-		if errors := login.Validate(); errors != nil {
+		if err := registration.Validate(); err != nil {
 			services.RenderTemplate(w, configs.Routes["registration"]["name"], map[string]interface{}{
-				"errors": errors,
+				"errors": err,
 			})
 		} else {
 			http.Redirect(w, r, configs.Routes["index"]["path"], http.StatusFound)

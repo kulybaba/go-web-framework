@@ -31,3 +31,10 @@ func (r *UserRepository) FindBy(find models.User) ([]models.User, error) {
 	}
 	return r.findBy, nil
 }
+
+func (r *UserRepository) Create(model *models.User) error {
+	if res := configs.DB.Create(model); res.Error != nil {
+		return res.Error
+	}
+	return nil
+}

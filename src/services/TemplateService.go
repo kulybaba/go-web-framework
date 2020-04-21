@@ -35,4 +35,5 @@ func RenderTemplate(w http.ResponseWriter, name string, vars map[string]interfac
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+	return
 }

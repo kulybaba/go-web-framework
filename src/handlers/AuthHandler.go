@@ -34,3 +34,8 @@ func RegistrationHandler(w http.ResponseWriter, r *http.Request) {
 		})
 	}
 }
+
+func LogoutHandler(w http.ResponseWriter, r *http.Request) {
+	services.Logout(w)
+	http.Redirect(w, r, configs.Routes["login"]["path"], http.StatusFound)
+}

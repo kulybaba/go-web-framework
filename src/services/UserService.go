@@ -2,8 +2,10 @@ package services
 
 import (
 	"fmt"
-	"time"
+	"log"
 	"net/http"
+	"time"
+	"github.com/google/uuid"
 	"golang.org/x/crypto/bcrypt"
 
 	"github.com/petrokulybaba/go-basic-framework/configs"
@@ -33,6 +35,19 @@ func Login(w http.ResponseWriter, r *http.Request, loginForm forms.Login) {
 			RenderTemplate(w, configs.Routes["login"]["name"], map[string]interface{}{
 				"errors": errors,
 			})
+		}
+
+		token := GenerateToken()
+		http.SetCookie(w, &http.Cookie{
+			Name:     configs.SESSION_COOKIE_NAME,
+			Value:    token,
+			Expires:  time.Now().Add(time.Hour * 24 * 30),
+			HttpOnly: true,
+		})
+
+		err = RedisSet(token, user.ID)
+		if err != nil {
+			log.Fatal(err)
 		}
 
 		http.Redirect(w, r, configs.Routes["index"]["path"], http.StatusFound)
@@ -72,7 +87,34 @@ func Registration(w http.ResponseWriter, r *http.Request, registrationForm forms
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 		}
 
+		token := GenerateToken()
+		http.SetCookie(w, &http.Cookie{
+			Name:     configs.SESSION_COOKIE_NAME,
+			Value:    token,
+			Expires:  time.Now().Add(time.Hour * 24 * 30),
+			HttpOnly: true,
+		})
+
+		err = RedisSet(token, user.ID)
+		if err != nil {
+			log.Fatal(err)
+		}
+
 		http.Redirect(w, r, configs.Routes["index"]["path"], http.StatusFound)
+	}
+}
+
+func Logout(w http.ResponseWriter) {
+	http.SetCookie(w, &http.Cookie{
+		Name:     configs.SESSION_COOKIE_NAME,
+		Expires:  time.Now(),
+		MaxAge:   -1,
+		HttpOnly: true,
+	})
+
+	err := RedisDelete(configs.SESSION_COOKIE_NAME)
+	if err != nil {
+		log.Fatal(err)
 	}
 }
 
@@ -84,4 +126,12 @@ func HashPassword(password string) (string, error) {
 func CheckPasswordHash(password, hash string) bool {
 	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
 	return err == nil
+}
+
+func GenerateToken() string {
+	uuid, err := uuid.NewUUID()
+	if err != nil {
+		log.Fatal(err)
+	}
+	return uuid.String()
 }

@@ -1,1 +1,1 @@
-**GO Basic Framework**
+**GO Web Framework**

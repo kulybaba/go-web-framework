@@ -3,8 +3,8 @@ package middlewares
 import (
 	"net/http"
 
-	"github.com/petrokulybaba/go-basic-framework/configs"
-	"github.com/petrokulybaba/go-basic-framework/src/services"
+	"github.com/petrokulybaba/go-web-framework/configs"
+	"github.com/petrokulybaba/go-web-framework/src/services"
 )
 
 func CheckAuthMiddleware(handler http.Handler) http.Handler {

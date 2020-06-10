@@ -3,7 +3,7 @@ package services
 import (
 	"time"
 
-	"github.com/petrokulybaba/go-basic-framework/configs"
+	"github.com/petrokulybaba/go-web-framework/configs"
 )
 
 func RedisGet(key string) (string, error) {

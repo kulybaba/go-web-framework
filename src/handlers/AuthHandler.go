@@ -3,9 +3,9 @@ package handlers
 import (
 	"net/http"
 
-	"github.com/petrokulybaba/go-basic-framework/configs"
-	"github.com/petrokulybaba/go-basic-framework/src/forms"
-	"github.com/petrokulybaba/go-basic-framework/src/services"
+	"github.com/petrokulybaba/go-web-framework/configs"
+	"github.com/petrokulybaba/go-web-framework/src/forms"
+	"github.com/petrokulybaba/go-web-framework/src/services"
 )
 
 func LoginHandler(w http.ResponseWriter, r *http.Request) {

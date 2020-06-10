@@ -8,10 +8,10 @@ import (
 	"github.com/google/uuid"
 	"golang.org/x/crypto/bcrypt"
 
-	"github.com/petrokulybaba/go-basic-framework/configs"
-	"github.com/petrokulybaba/go-basic-framework/src/forms"
-	"github.com/petrokulybaba/go-basic-framework/src/models"
-	"github.com/petrokulybaba/go-basic-framework/src/repositories"
+	"github.com/petrokulybaba/go-web-framework/configs"
+	"github.com/petrokulybaba/go-web-framework/src/forms"
+	"github.com/petrokulybaba/go-web-framework/src/models"
+	"github.com/petrokulybaba/go-web-framework/src/repositories"
 )
 
 func Login(w http.ResponseWriter, r *http.Request, loginForm forms.Login) {

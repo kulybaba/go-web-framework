@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/petrokulybaba/go-basic-framework/configs"
+	"github.com/petrokulybaba/go-web-framework/configs"
 )
 
 func TestIndexHandler(t *testing.T) {

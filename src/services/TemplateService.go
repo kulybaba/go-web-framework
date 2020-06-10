@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/petrokulybaba/go-basic-framework/configs"
+	"github.com/petrokulybaba/go-web-framework/configs"
 )
 
 type Template struct {

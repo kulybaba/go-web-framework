@@ -1,8 +1,8 @@
 package repositories
 
 import (
-	"github.com/petrokulybaba/go-basic-framework/configs"
-	"github.com/petrokulybaba/go-basic-framework/src/models"
+	"github.com/petrokulybaba/go-web-framework/configs"
+	"github.com/petrokulybaba/go-web-framework/src/models"
 )
 
 type UserRepository struct {

@@ -5,9 +5,9 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/petrokulybaba/go-basic-framework/configs"
-	"github.com/petrokulybaba/go-basic-framework/src/handlers"
-	"github.com/petrokulybaba/go-basic-framework/src/middlewares"
+	"github.com/petrokulybaba/go-web-framework/configs"
+	"github.com/petrokulybaba/go-web-framework/src/handlers"
+	"github.com/petrokulybaba/go-web-framework/src/middlewares"
 )
 
 func main() {

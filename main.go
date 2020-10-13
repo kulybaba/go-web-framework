@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"github.com/gorilla/mux"
 
 	"github.com/petrokulybaba/go-web-framework/configs"
 	"github.com/petrokulybaba/go-web-framework/src/handlers"
@@ -11,11 +12,12 @@ import (
 )
 
 func main() {
-	// Close connection with database and Redis
+	// Close connection with databases
 	defer configs.DB.Close()
 	defer configs.RedisClient.Close()
 
 	// Secure handlers
+	r := mux.NewRouter()
 	secureHandlers := http.NewServeMux()
 	secureHandlers.HandleFunc(configs.Routes["index"]["path"], handlers.IndexHandler)
 
